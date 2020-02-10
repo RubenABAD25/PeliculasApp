@@ -35,7 +35,7 @@ public class PeliculaDao {
 		em.remove(read(id));
 	}
 	public List<Pelicula> getPeliculasNombre(String nom){
-		String jpql = "SELECT p FROM Pelicula p  WHERE p.nombre like :nom ";
+		String jpql = "SELECT p FROM Pelicula p JOIN FETCH p.pelActores WHERE p.nombre like :nom ";
 		Query q = em.createQuery(jpql, Pelicula.class);
 		q.setParameter("nom","%"+nom+"%");
 		List<Pelicula> peliculas = q.getResultList();

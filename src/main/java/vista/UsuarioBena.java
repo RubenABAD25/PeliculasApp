@@ -25,8 +25,8 @@ public class UsuarioBena {
 	}
 	public String autenTicarse() 
 	{
-		Respuesta aux = uB.login(usuario.getEmail(), usuario.getClave());
-		if(aux!=null) {
+		int aux = uB.login(usuario.getEmail(), usuario.getClave());
+		if(aux >0) {
 			return "actores";
 		}
 		return "usuarios";

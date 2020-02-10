@@ -40,9 +40,18 @@ public class Pelicula implements Serializable {
 	private Categoria categoria;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "pelicula_id")
 	private List<PeliculaActor>pelActores;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Voto>votos;
 	
+	
+	
+	public List<Voto> getVotos() {
+		return votos;
+	}
+	public void setVotos(List<Voto> votos) {
+		this.votos = votos;
+	}
 	public int getId() {
 		return id;
 	}
@@ -109,6 +118,14 @@ public class Pelicula implements Serializable {
 		this.categoria = categoria;
 	}
 
+	public void agregarVotos(Voto v)
+	{
+		if(votos == null) {
+			votos= new ArrayList<Voto>();
+		}
+		votos.add(v);
+		System.out.println(votos.size());
+	}
 
 	//private static final long serialVersionUID = 1L;
 

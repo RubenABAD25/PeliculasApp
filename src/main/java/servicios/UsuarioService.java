@@ -29,7 +29,7 @@ public class UsuarioService {
 	@Path("/login")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Respuesta login(UsuarioTmp utemp) {
+	public int login(UsuarioTmp utemp) {
 		return uB.login(utemp.getEmail(), utemp.getClave());
 	}
 	@POST

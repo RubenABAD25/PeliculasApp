@@ -14,22 +14,22 @@ public class UsuarioBusiness {
 	private UsuarioDAO dao;
 
 	
-	public Respuesta login(String email, String clave) {
-	     Respuesta r =new Respuesta();
+	public int login(String email, String clave) {
+	     int val = 0;
 	     Usuario u= null;
 	     try {
 	    	 u=dao.login(email, clave);
 	    	 if(u!= null) {
-		    	 r.setRespuesta("OK");
+		    	 val=u.getId();
 		     }else {
-		    	 r.setRespuesta("fallido");
+		    	 val=0;
 		     }
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	     
 	    	
-		return r;
+		return val;
 	}
 
 	/**
