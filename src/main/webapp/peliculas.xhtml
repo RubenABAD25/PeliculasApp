@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layout.xhtml">
+		<ui:define name="contenido">
+			<div class="container">
+				<h:form enctype="multipart/form-data">
+					<div class="form-group">
+						<label>Titulo</label>
+						<h:inputText class="form-control"
+							value="#{peliculaBean.pelicula.nombre}" />
+					</div>
+					<div class="form-group">
+						<label>Sinopsis</label>
+						<h:inputText class="form-control"
+							value="#{peliculaBean.pelicula.sinopsis}" />
+					</div>
+					<div class="form-group">
+						<label>Anio</label>
+						<h:inputText class="form-control"
+							value="#{peliculaBean.pelicula.anio}" />
+					</div>
+					<div class="form-group">
+						<label>Duracion (min)</label>
+						<h:inputText class="form-control"
+							value="#{peliculaBean.pelicula.duracion}" />
+					</div>
+					<div class="form-group">
+						<label>$Precio</label>
+						<h:inputText class="form-control"
+							value="#{peliculaBean.pelicula.precio}" />
+					</div>
+					<div class="form-group">
+						<label>Portada</label>
+						<p:growl showDetail="true" />
+						<h:inputFile id="file" class="textbox" value="#{peliculaBean.file}" />
+					</div>
+					<div class="form-group col-md-3">
+						<label for="inputState">Categoria</label>
+						<h:selectOneMenu class="form-control" id="cat"
+							value="#{peliculaBean.idCategoria}">
+							 <f:selectItem itemLabel="Selecciona"  noSelectionOption="true"/>
+							<f:selectItems value="#{peliculaBean.idCategorias}" var="categoria"/>
+						</h:selectOneMenu>
+						<h:message for="cat" />
+						<h:outputText value="#{peliculaBean.nombreCat}" />
+						<h:commandButton action="#{peliculaBean.selecionar()}" value="Elejir" />
+					</div>
+					<div class="form-group">
+						<h:dataTable class="table" value="#{peliculaBean.pelicula.pelActores}" var="peli">
+							<h:column>
+								<f:facet name="header">Id del actor</f:facet>
+								<h:inputText value="#{peli.temporal}" id="temporal">
+									<f:ajax render="actor" execute="temporal" listener="#{peliculaBean.buscarActor(peli)}"/>
+								</h:inputText>
+								<h:outputText id="actor" value="#{peli.act.nombres}" />
+							</h:column>
+							
+						</h:dataTable>
+						<h:commandButton action="#{peliculaBean.agregarActor()}" value="Agregar un actor" />
+					</div>
+					<h:commandButton class="btn btn-primary" action="#{peliculaBean.crearPelicula()}" value="Guardar Pelicula" />
+					
+					<br />
+					<br />
+					<br />
+					
+					<div class="container">
+						<h:dataTable class="table" value="#{peliculaBean.peliculas}" var="pelicula">
+							<h:column>
+								<f:facet name="header">Id</f:facet>
+								#{pelicula.id}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Nombre</f:facet>
+								#{pelicula.nombre}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Precio</f:facet>
+								#{pelicula.precio}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Stock</f:facet>
+								#{pelicula.precio}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Categoria</f:facet>
+								#{pelicula.categoria.nombre}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Actores</f:facet>
+								<h:dataTable class="table table-striped" value="#{pelicula.pelActores}" var="actor">
+									<h:column>
+										<f:facet name="header">Nombres</f:facet>
+										#{actor.act.nombres} &nbsp; #{actor.act.apellidos}
+									</h:column>
+								</h:dataTable>
+							</h:column>
+						</h:dataTable>
+					</div>
+					
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

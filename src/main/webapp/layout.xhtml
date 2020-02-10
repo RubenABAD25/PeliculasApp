@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<link rel="stylesheet"
+		href="webjars/bootstrap/4.4.1/css/bootstrap.min.css" />
+</h:head>
+<body>
+	<ui:insert name="plantilla">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
+			class="navbar-brand" href="#">Peliculas</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li><h:link outcome="actores"> Actores
+						<span class="sr-only">(current)</span>
+				</h:link></li>
+				<li><h:link outcome="categorias">Categorias
+				<span class="sr-only">(current)</span>
+				</h:link></li>
+				<li><h:link outcome="peliculas">Peliculas
+				<span class="sr-only">(current)</span>
+				</h:link></li>
+	
+			</ul>
+		</div>
+		</nav>
+
+		<div class="container">
+			<ui:insert name="contenido">
+			</ui:insert>
+		</div>
+
+	</ui:insert>
+</body>
+</html>

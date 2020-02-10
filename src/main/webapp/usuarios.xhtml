@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head></h:head>
+<h:body>
+	<ui:composition template="layout.xhtml">
+	<ui:define name="contenido">
+
+			<h:form>
+				<div class="form-group">
+					<label>email</label>
+					<h:inputText value="#{usuarioBena.usuario.email}" class="form-control">
+
+					</h:inputText>
+				</div>
+
+				<div class="form-group">
+					<label>Password</label>
+					<h:inputSecret value="#{usuarioBena.usuario.clave}" class="form-control"/>
+				</div>
+
+				<div class="form-group">
+					<label>Nacionalidad</label>
+					<h:inputText value="#{actorBean.ac.nacionalidad}"
+						class="form-control">
+
+					</h:inputText>
+				</div>
+
+				
+
+				<h:commandButton class="btn btn-primary"
+					action="#{usuarioBena.registrarUser()}" value="Crear Actor" />
+					
+					<br/>
+					<br/>
+					<br/>
+				<div class="container">
+					<h:dataTable class="table" value="#{actorBean.actores}" var="actor">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						#{actor.id}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombres</f:facet>
+						#{actor.nombres} &nbsp; #{actor.apellidos}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nacionalidad</f:facet>
+						#{actor.nacionalidad}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha Nacimiento</f:facet>
+						#{actor.fechaN}
+					</h:column>
+				</h:dataTable>	
+				</div>
+					
+					
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
